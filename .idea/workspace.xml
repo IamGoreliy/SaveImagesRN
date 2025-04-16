@@ -5,6 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6330a1ec-9705-4f91-a7a2-ab0bebd0769c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/_layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/about.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/+not-found.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/_layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/apiKeyPixels.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/DisplayImageWithRedirect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/HomePage/ButtonOpenSearchMenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/HomePage/SearchButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/HomePage/TitleInHomePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/RenderImagePexels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/RenderImagePixabay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/[idImage].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/_layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/components/AuxiliaryButtonMenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/components/ModalEmoji.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/components/ParseEmojiList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/imagePage/components/RenderEmoji.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Codystar-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Codystar-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/customFetch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -16,6 +41,13 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -23,27 +55,29 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/bin/php" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2uoWDKZGw50XP7YnNoP2gBw2c2V" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/sergor/Documents/project/DownloadImg",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sergor/Documents/project/DownloadImg/assets/fonts&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/PhpStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -52,6 +86,18 @@
         <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/imagePage" />
+      <recent name="$PROJECT_DIR$/app/(tabs)" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/home" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/about" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -69,10 +115,16 @@
       <option name="presentableId" value="Default" />
       <updated>1742915287136</updated>
       <workItem from="1742915288501" duration="332000" />
+      <workItem from="1742915891616" duration="109483000" />
+      <workItem from="1744621054566" duration="21063000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
