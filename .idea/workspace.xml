@@ -5,31 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6330a1ec-9705-4f91-a7a2-ab0bebd0769c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/_layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/about.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/+not-found.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/_layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/apiKeyPixels.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/DisplayImageWithRedirect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/HomePage/ButtonOpenSearchMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/HomePage/SearchButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/HomePage/TitleInHomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/RenderImagePexels.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/RenderImagePixabay.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/[idImage].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/_layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/components/AuxiliaryButtonMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/components/ModalEmoji.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/components/ParseEmojiList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/imagePage/components/RenderEmoji.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/Codystar-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/Codystar-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/customFetch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/imagePage/[idImage].js" beforeDir="false" afterPath="$PROJECT_DIR$/app/imagePage/[idImage].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/imagePage/components/AuxiliaryButtonMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/imagePage/components/AuxiliaryButtonMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/imagePage/components/RenderEmoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/imagePage/components/RenderEmoji.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -116,7 +95,7 @@
       <updated>1742915287136</updated>
       <workItem from="1742915288501" duration="332000" />
       <workItem from="1742915891616" duration="109483000" />
-      <workItem from="1744621054566" duration="21063000" />
+      <workItem from="1744621054566" duration="27956000" />
     </task>
     <servers />
   </component>

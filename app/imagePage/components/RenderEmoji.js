@@ -7,14 +7,11 @@ const RenderEmoji = ({emojiImage}) => {
     const moveX = useSharedValue(100);
     const moveY = useSharedValue(100);
 
-    // console.log(moveX, moveY)
 
     const dragEmoji = Gesture.Pan().onChange(event => {
-        console.log('X',event.changeX, 'Y',event.changeY);
         moveX.value += event.changeX;
         moveY.value += event.changeY;
-
-    })
+    });
 
     const moveEmojiStyle = useAnimatedStyle(() => {
         return {
@@ -23,7 +20,7 @@ const RenderEmoji = ({emojiImage}) => {
                 {translateY: moveY.value},
             ]
         }
-    })
+    });
 
     return (
         <GestureDetector gesture={dragEmoji}>
@@ -36,7 +33,6 @@ const RenderEmoji = ({emojiImage}) => {
                 </Text>
              </Animated.View>
          </GestureDetector>
-
     )
 }
 
@@ -48,6 +44,6 @@ const styling = StyleSheet.create({
     emojiImage: {
         fontSize: 44,
     },
-})
+});
 
 export default RenderEmoji;

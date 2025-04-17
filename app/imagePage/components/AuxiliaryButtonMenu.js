@@ -14,14 +14,14 @@ const AuxiliaryButton = ({btnLabel, handler, stylingBtn}) => {
     )
 }
 
-const AuxiliaryButtonMenu = ({openEmoji}) => {
+const AuxiliaryButtonMenu = ({openEmoji, sceenshot}) => {
     return (
         <View style={styling.container}>
             <View style={styling.btnWrapper}>
                 <AuxiliaryButton
                     stylingBtn={styling.btn(true)}
                     btnLabel={<MaterialIcons name="save-alt" size={44} color="black" />}
-                    handler={() => console.log('save')}
+                    handler={() => sceenshot()}
                 />
                 <AuxiliaryButton
                     stylingBtn={styling.btn(true)}
