@@ -14,14 +14,14 @@ const AuxiliaryButton = ({btnLabel, handler, stylingBtn}) => {
     )
 }
 
-const AuxiliaryButtonMenu = ({openEmoji, sceenshot}) => {
+const AuxiliaryButtonMenu = ({openEmoji, screenshot, shareImage}) => {
     return (
         <View style={styling.container}>
             <View style={styling.btnWrapper}>
                 <AuxiliaryButton
                     stylingBtn={styling.btn(true)}
                     btnLabel={<MaterialIcons name="save-alt" size={44} color="black" />}
-                    handler={() => sceenshot()}
+                    handler={screenshot}
                 />
                 <AuxiliaryButton
                     stylingBtn={styling.btn(true)}
@@ -31,7 +31,7 @@ const AuxiliaryButtonMenu = ({openEmoji, sceenshot}) => {
                 <AuxiliaryButton
                     stylingBtn={styling.btn(true)}
                     btnLabel={<AntDesign name="sharealt" size={44} color="black" />}
-                    handler={() => console.log('share')}
+                    handler={shareImage}
                 />
             </View>
         </View>

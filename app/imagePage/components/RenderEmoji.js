@@ -13,6 +13,8 @@ const RenderEmoji = ({emojiImage}) => {
         moveY.value += event.changeY;
     });
 
+
+
     const moveEmojiStyle = useAnimatedStyle(() => {
         return {
             transform: [
@@ -22,8 +24,10 @@ const RenderEmoji = ({emojiImage}) => {
         }
     });
 
+    const composedGesture = Gesture.Simultaneous(dragEmoji)
+
     return (
-        <GestureDetector gesture={dragEmoji}>
+        <GestureDetector gesture={composedGesture}>
             <Animated.View style={[
                 moveEmojiStyle,
                 styling.emojiWrapper,

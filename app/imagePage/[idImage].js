@@ -10,7 +10,8 @@ import {GestureHandlerRootView} from "react-native-gesture-handler";
 import ParseEmojiList from "./components/ParseEmojiList";
 import {captureRef} from "react-native-view-shot";
 import * as MediaLibrary from 'expo-media-library';
-import * as ImagePicker from 'expo-image-picker'
+import * as Sharing from 'expo-sharing';
+import {saveImageFromMyGallery, sharedImage} from "../../utils/handlers";
 
 
 const IdImage = () => {
@@ -18,39 +19,10 @@ const IdImage = () => {
     const [emojiIsOpen, setEmojiIsOpen] = useState(false);
     const [emoji, setEmoji] = useState([]);
     const sectionPictureRef = useRef(null);
-    const [hasPermission, requestPermission] = MediaLibrary.usePermissions();
+    const [statusMedia, requestPermission] = MediaLibrary.usePermissions();
 
-    const handlerAccessToMedia = async () => {
-
-        try {
-            if (!sectionPictureRef.current) {
-                alert('НЕт компонента')
-                return;
-            }
-
-            if(!hasPermission?.granted) {
-                const permissionResponse = await requestPermission();
-                if (!permissionResponse.granted) {
-                    alert('нет доступа');
-                    return;
-                }
-            }
-
-
-            console.log('делаем скрин', sectionPictureRef.current)
-            const saveImage = await captureRef(sectionPictureRef.current, {
-                quality: 1,
-                format: "jpg",
-            })
-            await MediaLibrary.saveToLibraryAsync(saveImage);
-            if (saveImage) {
-                alert('изображение сохранено');
-            }
-        } catch (e) {
-            console.log('Ошибка скрина', e.message)
-        }
-    }
-
+    const handlerAccessToMedia = () => saveImageFromMyGallery(sectionPictureRef, statusMedia, requestPermission, captureRef, MediaLibrary);
+    const handlerShare = () => sharedImage(Sharing, captureRef, sectionPictureRef);
 
 
     const handlerOpenEmoji = useCallback(() => setEmojiIsOpen(prevState => !prevState), []);
@@ -64,7 +36,7 @@ const IdImage = () => {
                 {emoji.length > 0 && <ParseEmojiList listEmoji={emoji}/>}
             </View>
 
-            <AuxiliaryButtonMenu openEmoji={handlerOpenEmoji} sceenshot={handlerAccessToMedia}/>
+            <AuxiliaryButtonMenu openEmoji={handlerOpenEmoji} screenshot={handlerAccessToMedia} shareImage={handlerShare}/>
             {/* это мое модальное окно которое я сделал но оказалось что есть библиотека такая же rn-emoji-keyboard используеться <EmojiPiker/> */}
             {/*<ModalEmoji emojiIsVisible={emojiIsOpen} handlerCloseModal={handlerOpenEmoji} handlerSaveEmoji={handlerSaveEmoji}/>*/}
             <View>
