@@ -3,7 +3,7 @@ import {Image} from "expo-image";
 import {useLocalSearchParams} from "expo-router";
 import AuxiliaryButtonMenu from "./components/AuxiliaryButtonMenu";
 import ModalEmoji from "./components/ModalEmoji";
-import {useCallback, useRef, useState} from "react";
+import {createContext, useCallback, useRef, useState} from "react";
 import RenderEmoji from "./components/RenderEmoji";
 import EmojiPicker from "rn-emoji-keyboard";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
@@ -12,7 +12,10 @@ import {captureRef} from "react-native-view-shot";
 import * as MediaLibrary from 'expo-media-library';
 import * as Sharing from 'expo-sharing';
 import {saveImageFromMyGallery, sharedImage} from "../../utils/handlers";
+import uuid from "react-native-uuid";
 
+
+export const HandlerSideApiContext = createContext({});
 
 const IdImage = () => {
     const {id, secondId, imgURL} = useLocalSearchParams();
@@ -27,21 +30,34 @@ const IdImage = () => {
 
     const handlerOpenEmoji = useCallback(() => setEmojiIsOpen(prevState => !prevState), []);
     const handlerSaveEmoji = useCallback((emoji) => setEmoji(prevState => [...prevState, emoji]), []);
+    const handlerDeleteEmoji = useCallback((id) => setEmoji(prevState => prevState.filter(ele => ele.id !== id)), []);
 
 
     return (
         <GestureHandlerRootView style={styling.container}>
-            <View ref={sectionPictureRef} collapsable={false} style={styling.wrapperImage}>
-                <Image source={{uri: imgURL}} style={styling.image}/>
-                {emoji.length > 0 && <ParseEmojiList listEmoji={emoji}/>}
-            </View>
+            <HandlerSideApiContext.Provider value={{handlerDeleteEmoji}}>
+                <View ref={sectionPictureRef} collapsable={false} style={styling.wrapperImage}>
+                    <Image source={{uri: imgURL}} style={styling.image}/>
+                    {emoji.length > 0 && <ParseEmojiList listEmoji={emoji}/>}
+                </View>
 
-            <AuxiliaryButtonMenu openEmoji={handlerOpenEmoji} screenshot={handlerAccessToMedia} shareImage={handlerShare}/>
-            {/* это мое модальное окно которое я сделал но оказалось что есть библиотека такая же rn-emoji-keyboard используеться <EmojiPiker/> */}
-            {/*<ModalEmoji emojiIsVisible={emojiIsOpen} handlerCloseModal={handlerOpenEmoji} handlerSaveEmoji={handlerSaveEmoji}/>*/}
-            <View>
-                 {emojiIsOpen && <EmojiPicker open={emojiIsOpen} onClose={() => setEmojiIsOpen(false)} onEmojiSelected={element => handlerSaveEmoji(element.emoji)} allowMultipleSelections={true} onRequestClose={() => setEmojiIsOpen(false)} styles={{container: styling.emojiPicker}}/>}
-            </View>
+                <AuxiliaryButtonMenu openEmoji={handlerOpenEmoji} screenshot={handlerAccessToMedia} shareImage={handlerShare}/>
+                {/* это мое модальное окно которое я сделал но оказалось что есть библиотека такая же rn-emoji-keyboard используеться <EmojiPiker/> */}
+                {/*<ModalEmoji emojiIsVisible={emojiIsOpen} handlerCloseModal={handlerOpenEmoji} handlerSaveEmoji={handlerSaveEmoji}/>*/}
+                <View>
+                     {emojiIsOpen && <EmojiPicker
+                         open={emojiIsOpen}
+                         onClose={() => setEmojiIsOpen(false)}
+                         onEmojiSelected={element => handlerSaveEmoji({
+                             id: uuid.v4(),
+                             emoji: element.emoji,
+                         })}
+                         allowMultipleSelections={true}
+                         onRequestClose={() => setEmojiIsOpen(false)}
+                         styles={{container: styling.emojiPicker}}
+                     />}
+                </View>
+            </HandlerSideApiContext.Provider>
         </GestureHandlerRootView>
     )
 }

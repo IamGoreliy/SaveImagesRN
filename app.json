@@ -1,28 +1,33 @@
 {
   "expo": {
-    "name": "DownloadImg",
-    "slug": "DownloadImg",
+    "name": "SG3Icon",
+    "slug": "Download-Img",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/combined_icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
+      "image": "./assets/splashscreen.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "splash": {
+        "image": "./assets/splashscreen.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#00000000"
+      },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/combined_icon.png",
+        "backgroundColor": "#00000000"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logoWeb48x48byGPT.png"
     },
     "plugins": [
       "expo-router",
