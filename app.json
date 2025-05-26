@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "SG3Icon",
+    "name": "SG3Img",
     "slug": "Download-Img",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,21 +10,23 @@
     "splash": {
       "image": "./assets/splashscreen.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.india3.sg3DownloadImage"
     },
     "android": {
       "splash": {
         "image": "./assets/splashscreen.png",
         "resizeMode": "cover",
-        "backgroundColor": "#00000000"
+        "backgroundColor": "#FFFFFF"
       },
       "adaptiveIcon": {
         "foregroundImage": "./assets/combined_icon.png",
-        "backgroundColor": "#00000000"
-      }
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.india3.sg3DownloadImage"
     },
     "web": {
       "favicon": "./assets/logoWeb48x48byGPT.png"
@@ -32,6 +34,15 @@
     "plugins": [
       "expo-router",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9d143887-7c44-467e-a109-d053abfeb11d"
+      }
+    },
+    "owner": "india3"
   }
 }

@@ -1,4 +1,5 @@
 import {Text, View, StyleSheet} from "react-native";
+import {Image} from "expo-image";
 import {useFonts, Sacramento_400Regular} from "@expo-google-fonts/sacramento";
 import {LilitaOne_400Regular} from "@expo-google-fonts/lilita-one";
 
@@ -21,13 +22,25 @@ const TitleComponentPixabay = () => {
 
 const TitleComponentPexels = () => {
     return (
-        <View style={stylingTitle.titleWrapper}>
-            <Text style={stylingTitle.titleLabelPexels}>
-                Pexels
-            </Text>
+        <View style={stylingTitle.wrapperLogo}>
+            <Image
+                source={require('../../../assets/logo/pexelByGPTInActive.png')}
+                style={stylingTitle.logo}
+            />
         </View>
     )
 }
+
+//old version
+// const TitleComponentPexels = () => {
+//     return (
+//         <View style={stylingTitle.titleWrapper}>
+//             <Text style={stylingTitle.titleLabelPexels}>
+//                 Pexels
+//             </Text>
+//         </View>
+//     )
+// }
 
 const colorForPixabay = {
     0: 'rgba(255, 0, 0, 1 )',
@@ -49,7 +62,7 @@ const TitleInHomePage = ({namePage}) => {
 
     return (
         <>
-        {namePage === 'pexels' ? <TitleComponentPexels/> : <TitleComponentPixabay/>}
+            {namePage === 'pexels' ? <TitleComponentPexels/> : <TitleComponentPixabay/>}
         </>
     )
 }
@@ -71,6 +84,16 @@ const stylingTitle = StyleSheet.create({
         fontFamily: 'LilitaOne400',
         color: colorForPixabay[index],
     }),
+    wrapperLogo: {
+        width: '100%',
+        height: 100,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    logo: {
+        width: 350,
+        height: '100%',
+    }
 })
 
 export default TitleInHomePage;

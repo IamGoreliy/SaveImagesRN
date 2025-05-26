@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, ImageBackground} from "react-native";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import {Image} from "expo-image";
 import {useCallback, useRef, useState, createContext} from "react";
@@ -37,29 +37,34 @@ const Gallery = () => {
     return (
         <GestureHandlerRootView style={styling.container}>
             <HandlersContext.Provider value={{deleteEmoji}}>
-                <View ref={imageRef} collapsable={false} style={styling.wrapperImage}>
-                     {!!imgUser && <Image source={{uri: imgUser}} style={styling.userImg} />}
-                     {listEmoji.length > 0 && <ParserEmojiListForGallery listEmoji={listEmoji}/>}
-                </View>
-                <AuxiliaryButtonsGallery
-                    isThereAPicture={!!imgUser}
-                    handlerOpenCamera={openCamera}
-                    handlerOpenGallery={openGallery}
-                    handlerClearSelectPhoto={clearSelectPhoto}
-                    handlerShareImage={shareImage}
-                    handlerOpenEmoji={toggleEmoji}
-                    handlerSaveImage={saveImage}
-                />
-                <View>
-                    {openEmoji && <EmojiPicker
-                        open={openEmoji}
-                        onClose={toggleEmoji}
-                        onEmojiSelected={element => saveEmoji({
-                            id: uuid.v4(),
-                            emoji: element.emoji
-                        })}
-                    />}
-                </View>
+                <ImageBackground
+                    source={require('../../assets/splashscreen.png')}
+                    style={styling.bgWrapper}
+                >
+                    <View ref={imageRef} collapsable={false} style={styling.wrapperImage}>
+                         {!!imgUser && <Image source={{uri: imgUser}} style={styling.userImg} />}
+                         {listEmoji.length > 0 && <ParserEmojiListForGallery listEmoji={listEmoji}/>}
+                    </View>
+                    <AuxiliaryButtonsGallery
+                        isThereAPicture={!!imgUser}
+                        handlerOpenCamera={openCamera}
+                        handlerOpenGallery={openGallery}
+                        handlerClearSelectPhoto={clearSelectPhoto}
+                        handlerShareImage={shareImage}
+                        handlerOpenEmoji={toggleEmoji}
+                        handlerSaveImage={saveImage}
+                    />
+                    <View>
+                        {openEmoji && <EmojiPicker
+                            open={openEmoji}
+                            onClose={toggleEmoji}
+                            onEmojiSelected={element => saveEmoji({
+                                id: uuid.v4(),
+                                emoji: element.emoji
+                            })}
+                        />}
+                    </View>
+                </ImageBackground>
             </HandlersContext.Provider>
         </GestureHandlerRootView>
     )
@@ -68,6 +73,9 @@ const Gallery = () => {
 const styling = StyleSheet.create({
     container: {
         position: "relative",
+        flex: 1,
+    },
+    bgWrapper: {
         flex: 1,
     },
     wrapperImage: {

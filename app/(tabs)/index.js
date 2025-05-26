@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, TouchableOpacity, TextInput, FlatList, Modal} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, TextInput, FlatList, Modal, ImageBackground} from "react-native";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import debounce from "debounce";
 import {fetchPixabay} from "../../utils/customFetch";
@@ -9,6 +9,8 @@ import SearchButton from "../components/HomePage/SearchButton";
 import ButtonOpenSearchMenu from "../components/HomePage/ButtonOpenSearchMenu";
 
 import TitleInHomePage from "../components/HomePage/TitleInHomePage";
+import {BlurView} from "expo-blur";
+import {Image} from "expo-image";
 
 const clientPexels = createClient('Nb9CCp1nEA2HWMDEF9Vfo3duvR76rV84iwOFUW2YdK0rBk2VdrUge7pH');
 
@@ -21,6 +23,7 @@ const Home = () => {
     const [searchWindowIsOpen, setSearchWindowIsOpen] = useState(false);
     const [nextPage, setNextPage] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [cleaningPic, setCleaningPic] = useState('scroll');
 
     const handlerSearch = useMemo(() => {
         return debounce((value) => {
@@ -31,7 +34,7 @@ const Home = () => {
 
     const handlerPexelsDownloadImage = useCallback((objOption = {page: 1, per_page: 1}) => clientPexels.photos.curated(objOption) ,[]);
     const handlerPixabayDownloadImage = useCallback((inputSearch = '', currentPage, counter = 30) =>  fetchPixabay(inputSearch, currentPage, counter),[]);
-    const handlerPexelsSearchPhotoByName = useCallback((query = 'flower', perPage = 1) => clientPexels.photos.search({query, per_page: perPage}), []);
+    const handlerPexelsSearchPhotoByName = useCallback((query = 'flower', perPage = 1, curPage = 1) => clientPexels.photos.search({query, per_page: perPage}), []);
     const handlerToggleButton = useCallback((value) => {
         if (whatResourceSelected === value) {
             return;
@@ -44,47 +47,55 @@ const Home = () => {
     const handlerTogglerModal = useCallback(() => setSearchWindowIsOpen(PrevState => !PrevState), []);
     const handlerSignalWhenScrollBelow = useCallback(() => setNextPage(true),[]);
 
-
-
-    useEffect(() => {
-        if (whatResourceSelected === 'pexels') {
-            handlerPexelsDownloadImage({page: currentPage, per_page: 10})
-                .then(res => {
-                    const {next_page: nextPage, page, per_page: PerPage, photos, total_results: totalResults} = res;
-                    setImageData(prevState => [...prevState, ...photos]);
-                })
-                .catch(error => console.error(error));
-        } else {
-            handlerPixabayDownloadImage('', currentPage, 10)
-                .then(res => {
-                    const {hits, total, totalHits} = res;
-                    setImageData(prevState => [...prevState, ...hits]);
-                })
-                .catch(error => console.error(error));
-        }
-
-    }, [whatResourceSelected, currentPage]);
+    //🥎🥎🥎 необходимо просмотреть.доработать функцию pexelsSearchPhoto + добавить uuid так как id повторяються
 
     useEffect(() => {
-        if (!inputSearch) {
-            return;
-        }
-        if (whatResourceSelected === 'pexels') {
-            handlerPexelsSearchPhotoByName(inputSearch, 30)
-                .then(response => {
-                    const {next_page: nextPage, page, per_page: PerPage, photos, total_results: totalResults} = response;
-                    setImageData(photos);
-                })
-                .catch(error => console.error(error));
+        if (inputSearch) {
+            if (whatResourceSelected === 'pexels') {
+                handlerPexelsSearchPhotoByName(inputSearch, 30)
+                    .then(response => {
+                        if (cleaningPic !== 'searchPexel') {
+                            setCleaningPic('searchPexel');
+                            setImageData([]);
+                        }
+                        const {next_page: nextPage, page, per_page: PerPage, photos, total_results: totalResults} = response;
+                        setImageData(prevState => [...prevState, ...photos]);
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                handlerPixabayDownloadImage(inputSearch, currentPage, 30)
+                    .then(response => {
+                        if (cleaningPic !== 'searchPixabay') {
+                            setCleaningPic('searchPixabay');
+                            setImageData([]);
+                        }
+                        const {hits, total, totalHits} = response;
+                        setImageData(prevState => [...prevState, ...hits]);
+                    })
+                    .catch(error => console.error(error));
+            }
         } else {
-            handlerPixabayDownloadImage(inputSearch, 30)
-                .then(response => {
-                    const {hits, total, totalHits} = response;
-                    setImageData(hits);
-                })
-                .catch(error => console.error(error));
+            if (cleaningPic !== 'scroll') {
+                setCleaningPic('scroll');
+                setImageData([]);
+            }
+            if (whatResourceSelected === 'pexels') {
+                handlerPexelsDownloadImage({page: currentPage, per_page: 10})
+                    .then(res => {
+                        const {next_page: nextPage, page, per_page: PerPage, photos, total_results: totalResults} = res;
+                        setImageData(prevState => [...prevState, ...photos]);
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                handlerPixabayDownloadImage('', currentPage, 10)
+                    .then(res => {
+                        const {hits, total, totalHits} = res;
+                        setImageData(prevState => [...prevState, ...hits]);
+                    })
+                    .catch(error => console.error(error));
+            }
         }
-    }, [inputSearch, whatResourceSelected]);
+    }, [inputSearch, whatResourceSelected, currentPage]);
 
 
     useEffect(() => {
@@ -96,8 +107,11 @@ const Home = () => {
 
 
     return (
-        <View
+        <ImageBackground
+            source={require('../../assets/splashscreen.png')}
+            resizeMode="cover"
             style={stylingHomePage.main}
+            blurRadius={10}
         >
             { !searchWindowIsOpen && <ButtonOpenSearchMenu statusButton={searchWindowIsOpen} toggler={handlerTogglerModal}/>}
             <TitleInHomePage namePage={whatResourceSelected}/>
@@ -107,31 +121,36 @@ const Home = () => {
                 searcher={handlerSearch}
                 modalStatus={searchWindowIsOpen}
                 closeModal={handlerTogglerModal}
+                searchInputValue={inputSearch}
             />
-            <View style={{height: '100%',  marginTop: 20}}>
-                {imageData.length > 0 &&  whatResourceSelected === 'pexels'
-                    ? <RenderImagePexels
-                        data={imageData}
-                        handlerListenerScroll={handlerSignalWhenScrollBelow}
-                    />
-                    : <RenderImagePixabay
-                        data={imageData}
-                        handlerListenerScroll={handlerSignalWhenScrollBelow}
-                    />
-                }
-            </View>
-        </View>
+
+                <View style={stylingHomePage.wrapperImageRenderSection}>
+                        {imageData.length > 0 &&  whatResourceSelected === 'pexels'
+                            ? <RenderImagePexels
+                                data={imageData}
+                                handlerListenerScroll={handlerSignalWhenScrollBelow}
+                            />
+                            : <RenderImagePixabay
+                                data={imageData}
+                                handlerListenerScroll={handlerSignalWhenScrollBelow}
+                            />
+                        }
+                </View>
+        </ImageBackground>
     )
 }
 
 const stylingHomePage = StyleSheet.create({
     main: {
+        flex: 1,
         padding: 10,
-        marginTop: 40,
+        paddingTop: 50,
+        backgroundColor: 'red'
     },
-
-
-
+    wrapperImageRenderSection: {
+        height: '88%',
+        marginTop: 20,
+    },
 })
 
 export default Home;
